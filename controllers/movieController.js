@@ -6,7 +6,7 @@ async function searchMovies(req, res) {
     const title = req.query.title
 
     if (!title) {
-        res.status(400).json({ "error": "Title query parameter is required" });
+        return res.status(400).json({ "error": "Title query parameter is required" });
     }
 
     try {
