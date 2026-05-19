@@ -13,8 +13,15 @@ const PORT = process.env.PORT;
 
 
 // ROUTES--------------------------------------------------------------------------------------------
+//Test Route
+app.get('/', (req, res) => {
+    res.send('Testing route...')
+})
 
 
 
 
 //PORT--------------------------------------------------------------------------------------------
+app.listen(PORT, () => {
+    console.log(`Server running on http://localhost:${PORT}`);
+});
