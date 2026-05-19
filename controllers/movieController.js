@@ -3,14 +3,19 @@ require('dotenv').config();
 
 
 async function searchMovies(req, res) {
+    const title = req.query.title
+
+    if (!title) {
+        res.status(400).json({ "error": "Title query parameter is required" });
+    }
+
     try {
-        const title = req.query.title
         const response = await axios.get(
             `http://www.omdbapi.com/?s=${title}&apikey=${process.env.OMDB_API_KEY}`
         );
 
-
         res.json(response.data);
+
     } catch (error) {
         if (error.response) {
             // The request was made and the server responded with a status code
