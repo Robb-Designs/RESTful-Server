@@ -10,7 +10,7 @@ async function searchMovies(req, res) {
     }
 
     try {
-        const response = await axios.get(`http://www.omdbapi.com/?s=${title}&apikey=${process.env.OMDB_API_KEY}`);
+        const response = await axios.get(`http://www.omdbapi.com/?s=${title}&apikey=${process.env.API_KEY}`);
 
         res.json(response.data);
 
@@ -38,7 +38,7 @@ async function getMovieDetails(req, res) {
     }
 
     try {
-        const response = await axios.get(`http://www.omdbapi.com/?i=${id}&apikey=${process.env.OMDB_API_KEY}`);
+        const response = await axios.get(`http://www.omdbapi.com/?i=${id}&apikey=${process.env.API_KEY}`);
 
         res.json(response.data);
     } catch (error) {
@@ -53,3 +53,8 @@ async function getMovieDetails(req, res) {
         }
     }
 }
+
+module.exports = {
+    searchMovies,
+    getMovieDetails
+};

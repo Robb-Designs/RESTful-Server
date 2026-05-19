@@ -6,12 +6,13 @@ require('dotenv').config();
 const PORT = process.env.PORT;
 
 const movieRouter = require('./routes/movieRoutes.js');
+const { searchMovies } = require('./controllers/movieController.js');
 
 
 
 // MIDDLEWARE--------------------------------------------------------------------------------------------
 //Route Mounting
-app.use('/api', movieRoutes);
+app.use('/api', movieRouter);
 
 
 
@@ -20,9 +21,6 @@ app.use('/api', movieRoutes);
 app.get('/', (req, res) => {
     res.send('Testing route...')
 })
-
-
-
 
 //PORT--------------------------------------------------------------------------------------------
 app.listen(PORT, () => {
