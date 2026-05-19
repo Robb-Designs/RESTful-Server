@@ -1,7 +1,7 @@
 const axios = require('axios');
 require('dotenv').config();
 
-
+//Search Controller
 async function searchMovies(req, res) {
     const title = req.query.title
 
@@ -27,5 +27,21 @@ async function searchMovies(req, res) {
             console.error('Network Error:', error.message);
             res.status(500).json({ message: 'A network error occurred.' });
         }
+    }
+}
+
+
+//Details Controller
+async function getMovieDetails(req, res){
+    const id = req.params.id;
+
+     if (!id) {
+        return res.status(400).json({ "error": "ID parameter is required" });
+    }
+
+    try{
+
+    } catch (error){
+        
     }
 }
