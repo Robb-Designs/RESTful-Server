@@ -5,10 +5,13 @@ const app = express();
 require('dotenv').config();
 const PORT = process.env.PORT;
 
+const movieRoutes = require('./routes/movieRoutes.js');
+
 
 
 // MIDDLEWARE--------------------------------------------------------------------------------------------
-
+//Route Mounting
+app.use('/api', movieRoutes);
 
 
 
