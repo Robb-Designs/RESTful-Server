@@ -10,9 +10,7 @@ async function searchMovies(req, res) {
     }
 
     try {
-        const response = await axios.get(
-            `http://www.omdbapi.com/?s=${title}&apikey=${process.env.OMDB_API_KEY}`
-        );
+        const response = await axios.get(`http://www.omdbapi.com/?s=${title}&apikey=${process.env.OMDB_API_KEY}`);
 
         res.json(response.data);
 
@@ -32,16 +30,26 @@ async function searchMovies(req, res) {
 
 
 //Details Controller
-async function getMovieDetails(req, res){
+async function getMovieDetails(req, res) {
     const id = req.params.id;
 
-     if (!id) {
+    if (!id) {
         return res.status(400).json({ "error": "ID parameter is required" });
     }
 
-    try{
+    try {
+        const response = await axios.get(`http://www.omdbapi.com/?i=${id}&apikey=${process.env.OMDB_API_KEY}`);
 
-    } catch (error){
-        
+        res.json(response.data);
+    } catch (error) {
+        if (error.response) {
+            console.error('API Error:', error.response.status, error.response.data);
+            res.status(error.response.status).json({ message: 'Error fetching data from external API.' });
+
+        } else {
+            console.error('Network Error:', error.message);
+            res.status(500).json({ message: 'A network error occurred.' });
+
+        }
     }
 }
